@@ -22,13 +22,13 @@ def Finder():
 
     if reasons == "OK":
         print("Working code found! -> " + code + f" Reason -> {reasons}")
+        f = open("kcodes.txt", "a")
+        f.write(f"{code}\n")
     else:
         print("Code: " + code + " failed. Status code -> " + str(stcode) + " Reason -> " + reasons)
 
-threads = input("Input the amount of threads: ")
+threads = int(input("Input the amount of threads: "))
 
 while True:
     with concurrent.futures.ThreadPoolExecutor() as executer:
         results = [executer.submit(Finder) for _ in range(threads)]
-#        for f in concurrent.futures.as_completed(results):
-#           print("")
