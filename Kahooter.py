@@ -1,4 +1,5 @@
 from time import sleep
+from datetime import datetime
 import requests, random, json, string
 import concurrent.futures
 
@@ -22,8 +23,9 @@ def Finder():
 
     if reasons == "OK":
         print("Working code found! -> " + code + f" Reason -> {reasons}")
+        time = datetime.now().strftime("%H:%M:%S")
         f = open("kcodes.txt", "a")
-        f.write(f"{code}\n")
+        f.write(f"{code} Time -> {time}\n")
     else:
         print("Code: " + code + " failed. Status code -> " + str(stcode) + " Reason -> " + reasons)
 
