@@ -1,6 +1,6 @@
 from time import sleep
 from datetime import datetime
-import requests, random, json, string
+import requests, random, string
 import concurrent.futures
 
 def GetGame(id):
